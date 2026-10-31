@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "catalog_documents": 1161,
+  "stored_documents": 1161,
+  "questions": 8060,
+  "figures": 4321,
+  "question_review_counts": {
+    "needs_review": 8039,
+    "verified_visual": 21
+  },
+  "mathematical_transcription": "not_verified",
+  "archives": [
+    {
+      "filename": "STEM_Question_Bank_Physics.zip",
+      "bytes": 483579821,
+      "sha256": "c6357191eafd5d2a267c138a27d6a965c6bc8f734d6c8dd27e2211a3c57f6bf8",
+      "files": 13154,
+      "subject": "physics",
+      "documents": 282,
+      "questions": 1882
+    },
+    {
+      "filename": "STEM_Question_Bank_Chemistry.zip",
+      "bytes": 520039641,
+      "sha256": "9fe20af840d1c831d0e374bdbdbd58a20d4c5cf8cc24baaeae7e1a8be932cee4",
+      "files": 11051,
+      "subject": "chemistry",
+      "documents": 182,
+      "questions": 2017
+    },
+    {
+      "filename": "STEM_Question_Bank_Mathematics_Part1.zip",
+      "bytes": 273945287,
+      "sha256": "de42b2334c3e4b82d2768336e166abf3ee8b67b2ff07f1b5020975207e86c45c",
+      "files": 9143,
+      "subject": "math",
+      "documents": 269,
+      "questions": 1471
+    },
+    {
+      "filename": "STEM_Question_Bank_Mathematics_Part2.zip",
+      "bytes": 273945490,
+      "sha256": "3ecbdc3d1900839ff091330523d524ddaebdf30ff7773ec2a21b83f38bf26161",
+      "files": 9145,
+      "subject": "math",
+      "documents": 268,
+      "questions": 1489
+    },
+    {
+      "filename": "STEM_Question_Bank_Biology_Part1.zip",
+      "bytes": 505314228,
+      "sha256": "fd1897b80efbe0ca2ab06b69b3081588321f0c89bdee20ac9d93784728ffa952",
+      "files": 4263,
+      "subject": "biology",
+      "documents": 76,
+      "questions": 596
+    },
+    {
+      "filename": "STEM_Question_Bank_Biology_Part2.zip",
+      "bytes": 505313942,
+      "sha256": "5ae0de8871181ada29526a8e9f2e6d5e50cb438ec482dbb5025c731ff4d46c13",
+      "files": 4262,
+      "subject": "biology",
+      "documents": 84,
+      "questions": 605
+    },
+    {
+      "filename": "STEM_Question_Bank_Catalog.zip",
+      "bytes": 43282064,
+      "sha256": "c569df8e6d9896911a288ddc3b8485f85f1242490d9e54b6d0092e9f3dc03f87",
+      "files": 261
+    }
+  ],
+  "snapshot_scope": "Historical seven-archive question-bank delivery created 2026-10-11. This public copy preserves the verified snapshot metadata; the private maintenance source remains separate.",
+  "updated_at": "2026-10-31T00:00:00Z"
+}
