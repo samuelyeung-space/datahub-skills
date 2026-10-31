@@ -7,6 +7,18 @@ description: 从公开国际课程与竞赛真题库按需读取题目、分类�
 
 用户要求制作 IB、AP、CIE、Edexcel、DSE、AMC 或相关国际课程的专题小白书、真题练习册、学生册或答案详解册时使用。
 
+## 安装与实际启用（不要把“已读取”冒充“已安装”）
+
+- 首次收到教师发来的网址，先读取本 Skill 和公开题库索引；有网页读取能力即可在**本次对话**遵循规则。
+- 对于具有项目文件写入和 Python 的 **Codex / Claude Code**，可以先审查公开的安装程序 `install_skill.py`，在用户许可与平台权限允许时把本 Skill 放到项目技能目录。安装程序只下载经过固定 SHA-256 校验的公开 ZIP，不执行其内代码，拒绝覆盖已有不同技能。
+  安装程序：<https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/install_skill.py>
+  Codex 项目命令：`python install_skill.py --client codex --scope project --workspace .`
+  Claude Code 项目命令：`python install_skill.py --client claude-code --scope project --workspace .`
+  需要持久应用于多个项目时，**经用户授权**可选择 `--scope user`；执行后检查实际 SKILL.md 与对应客户端的技能发现结果。
+- **ChatGPT 网页、Claude 网页**的账号级技能只能通过宿主提供的 Skills 创建、共享或上传流程安装；普通网站链接无法替用户越过安装确认、扫描或工作区权限。宿主支持时引导完成真实安装，不支持时只在当前会话应用规则。
+- 对其他 AI 平台，不假设存在原生 Skills 安装入口；按能力选择读取并使用、通过本机文件安装、或说明当前不可安装。
+- 最终报告 `installed`（实际文件/宿主确认）、`session-only`（仅当前对话有效）、或 `blocked`（实际限制）。仅看到 ZIP 下载地址、仅阅读 SKILL.md，都不等于永久安装成功。
+
 ## 自动启动
 
 1. 读取公开题库指南：https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md
