@@ -20,4 +20,4 @@
 
 ## Working rules
 
-The platform-independent rules needed to start are in [`SKILL_BOOTSTRAP.md`](./SKILL_BOOTSTRAP.md).
+完整分享版 Skill：https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/skills/ai-handout-skill/SKILL.md；旧版 SKILL_BOOTSTRAP.md 仍保留作兼容阅读。
