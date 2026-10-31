@@ -19,12 +19,12 @@ import urllib.request
 import zipfile
 
 SKILL_NAME = "ai-handout-skill"
-COMMIT = "b9cd1bea74a74def24ea72bbef7f90904e2c87b5"
+COMMIT = "6306b08398c75b48891e993ef9969e5de5eb094f"
 ARCHIVE_URL = (
     "https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/"
     + COMMIT + "/international-stem-members/ai-handout-skill.zip"
 )
-ARCHIVE_SHA256 = "f44b70f7b852fdf19d0765bd7a68e33e8a2e1d19c351de61b6e8efad0f5f1dc4"
+ARCHIVE_SHA256 = "7d9f15cf4706ee546b7591b5703310d45f7dda9f5222a7150838cfca9d3391ca"
 MEMBERS = {
     "SKILL.md",
     "README.md",
