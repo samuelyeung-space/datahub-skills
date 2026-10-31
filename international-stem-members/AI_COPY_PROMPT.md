@@ -1,25 +1,11 @@
-# Copy this message to your AI
+# 复制给 AI 的指令
 
-Please open and follow this setup page first:
+请先打开：https://ai-handout-school.vercel.app/ai.txt
 
-https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md
+根据其中提供的公开 Skill 和课程索引，自行读取真实题目，并按“知识点 → 识别题型 → 固定解法 → 母题示范 → 同型练习 → 条件变式”的顺序制作教学材料。
 
-Question bank:
-https://github.com/samuel-resource-members/international-stem-members
-Read https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md to learn how its files link together.
+你应先确认能实际读取一道题的文字和相关分类。如果要用的题目包含关键配图、原卷或评分材料，还须实际取得并核对对应文件；仅看到 ZIP 下载链接不算完整。
 
-Complete the setup yourself before asking me for book details:
+支持持久 Skills 时可以加载或保存；不支持时，请在当前会话执行这些规则。根据我已经告诉你的课程、专题、学生先修、语言和册别继续，不要重复提问。学生册练习不附答案，详解册保持相同编号与顺序并逐题详解。
 
-1. Read `START_HERE.md`, `SKILL_BOOTSTRAP.md`, and `QUESTION_BANK_LINKS.md` in that folder.
-2. Use your available web, GitHub, file, and coding tools to access the linked resources. Follow links yourself; do not ask me to download or manually reorganize the whole library.
-3. Load or apply the Xiaobai-book working rules in `SKILL_BOOTSTRAP.md`. If your platform supports persistent skills, install or save them there. Otherwise, apply the rules for this conversation.
-4. Use the question-bank catalogue to retrieve only the course, topic, real past-paper questions, OCR text, diagrams, marking material, and source files needed for my current book.
-5. Check that you can actually read one question text file and one related image or question file. Do not claim setup is complete based only on seeing filenames.
-6. When setup is complete, ask me only:
-   - Which course or exam?
-   - Which topic or scope?
-   - What has the student already learned?
-   - Which language?
-   - Student book, solutions book, or both?
-
-Do not ask me to register for, join, or manage anything; open the links yourself. Do not download the entire library unless your environment genuinely needs a local clone.
+如果联网、解压或 PDF 导出受限，请明确告诉我哪些步骤已经做成、哪些仍受限，不要虚构题目或声称文件已生成。
