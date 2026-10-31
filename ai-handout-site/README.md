@@ -2,6 +2,10 @@
 
 Static public frontend for the AI handout workflow. The website is the teacher-facing entry; the public GitHub copy supplies machine-readable instructions and learning materials. Private maintenance repositories remain private.
 
+## Live
+
+- Cloudflare Pages project `ai-handout-school`: <https://ai-handout-school.pages.dev> (deployed with `wrangler pages deploy`; only `index.html`, `ai.txt`, `_headers` are uploaded)
+
 ## Vercel
 
 - Import repository: `samuelyeung-space/datahub-skills`

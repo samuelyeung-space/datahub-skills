@@ -4,6 +4,10 @@ Please open and follow this public setup page first:
 
 https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md
 
+The question bank it points to is public and needs no login:
+https://github.com/samuel-resource-members/international-stem-members
+Read https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md to learn how its files link together.
+
 Complete the setup yourself before asking me for book details:
 
 1. Read `START_HERE.md`, `SKILL_BOOTSTRAP.md`, and `QUESTION_BANK_LINKS.md` in that folder.

@@ -1,3 +1,5 @@
+> **AI handout workflow for teachers** — start at [`international-stem-members/START_HERE.md`](international-stem-members/START_HERE.md). Website: <https://ai-handout-school.pages.dev>. Public question bank: <https://github.com/samuel-resource-members/international-stem-members>.
+
 # datahub-skills
 
 Agent skills for working with DataHub — plan and review connectors, search the catalog, enrich metadata, trace lineage, manage data quality, and set up connections. Works with [Claude Code](https://claude.ai/claude-code), [Cortex Code](https://docs.snowflake.com/en/user-guide/cortex-code/cortex-code), [Cursor](https://cursor.sh), [Codex](https://openai.com/codex), [Copilot](https://github.com/features/copilot), [Gemini CLI](https://github.com/google-gemini/gemini-cli), [Windsurf](https://windsurf.com), and other [Agent Skills](https://skills.sh)-compatible tools.

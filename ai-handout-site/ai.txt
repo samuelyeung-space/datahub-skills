@@ -6,6 +6,15 @@ https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/internat
 Public copy directory:
 https://github.com/samuelyeung-space/datahub-skills/tree/main/international-stem-members
 
+Public question bank (no login):
+https://github.com/samuel-resource-members/international-stem-members
+
+How to read the question bank:
+https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md
+
+Course index:
+https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/index.json
+
 Before asking the teacher what book they want:
 1. Read START_HERE.md, SKILL_BOOTSTRAP.md, QUESTION_BANK_LINKS.md and AI_COPY_PROMPT.md.
 2. Use available web, GitHub, file or coding tools to follow the public links yourself.
