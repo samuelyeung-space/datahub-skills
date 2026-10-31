@@ -2,13 +2,18 @@
 
 This folder is the machine-readable starting point for teachers who want their own AI assistant to prepare a workbook, topical booklet, student book, or worked-solutions book.
 
+## Teacher: the fastest way to start
+
+Send your AI this page, or copy the complete message in [`AI_COPY_PROMPT.md`](./AI_COPY_PROMPT.md). The AI should follow the links itself; the teacher should not need to download or reorganize the whole library.
+
 ## AI: do these steps before asking the teacher for details
 
 1. Read [`SKILL_BOOTSTRAP.md`](./SKILL_BOOTSTRAP.md).
 2. Open [`QUESTION_BANK_LINKS.md`](./QUESTION_BANK_LINKS.md) and use the public question-bank catalogue instead of asking the teacher to collect papers manually.
 3. Retrieve only the course, topic, question text, figures, marking material, and source files needed for the current book. Do not download the entire library unless the runtime genuinely requires a local clone.
 4. Preserve real past-paper questions and their necessary diagrams. Do not invent replacement questions when real matching questions are available.
-5. After setup, ask the teacher only for the book they want: course, topic/scope, student level, language, and whether they need a student book, solutions book, or both.
+5. Verify access by actually reading at least one question text file and one related image or source question file. Seeing filenames alone is not enough.
+6. After setup, ask the teacher only for the book they want: course, topic/scope, student level, language, and whether they need a student book, solutions book, or both.
 
 ## Intended teacher workflow
 
