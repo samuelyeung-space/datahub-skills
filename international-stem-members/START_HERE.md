@@ -1,30 +1,21 @@
-# International STEM Handout Library — AI Start Here
+# 小白书制作 · AI 启动页
 
-This folder is the machine-readable starting point for teachers who want their own AI assistant to prepare a workbook, topical booklet, student book, or worked-solutions book.
+给老师的网站：https://ai-handout-school.vercel.app/
 
-## Links
+给 AI 的机器入口：https://ai-handout-school.vercel.app/ai.txt
 
-- Website for teachers: <https://ai-handout-school.pages.dev>
-- Question bank: <https://github.com/samuel-resource-members/international-stem-members>
-- How the AI should read the bank: <https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md>
+**完整可分享 Skill**：https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/skills/ai-handout-skill/SKILL.md
 
-## Teacher: the fastest way to start
+公开题库：https://github.com/samuel-resource-members/international-stem-members
 
-Send your AI this page, or copy the complete message in [`AI_COPY_PROMPT.md`](./AI_COPY_PROMPT.md). The AI should follow the links itself; the teacher should not need to download or reorganize the whole library.
+按如下顺序完成准备：
 
-## AI: do these steps before asking the teacher for details
+1. 阅读完整 SKILL.md，依照当前 AI 可用的网页与文件能力加载规则。支持 Skills 的可保存技能，否则在本次聊天遵照规则执行。
+2. 打开公开题库的 catalog/index.json，沿 JSON 的 courses[].file → papers[].file → questions[].question_file 找到当前专题真实题目。
+3. 实际读取题干、选项与分类；需要源图、评分或原卷时进一步取得并核对，不把 ZIP 链接当作已取得文件。
+4. 沿“知识点→辨认题型→固定解法→母题示范→同型跟练→变式→独立练习”编排；学生册与详解册同题号、同顺序。
+5. 若用户尚未说明课程/专题/学生基础等关键条件，只询问缺少的部分；不要重复问已经提供的信息。
 
-1. Read [`SKILL_BOOTSTRAP.md`](./SKILL_BOOTSTRAP.md).
-2. Open [`QUESTION_BANK_LINKS.md`](./QUESTION_BANK_LINKS.md) and use the question bank at <https://github.com/samuel-resource-members/international-stem-members> (course index → paper → single question files) instead of asking the teacher to collect papers manually.
-3. Retrieve only the course, topic, question text, figures, marking material, and source files needed for the current book. Do not download the entire library unless the runtime genuinely requires a local clone.
-4. Preserve real past-paper questions and their necessary diagrams. Do not invent replacement questions when real matching questions are available.
-5. Verify access by actually reading at least one question text file and one related image or source question file. Seeing filenames alone is not enough.
-6. After setup, ask the teacher only for the book they want: course, topic/scope, student level, language, and whether they need a student book, solutions book, or both.
+完整 ZIP：https://github.com/samuelyeung-space/datahub-skills/raw/refs/heads/main/international-stem-members/ai-handout-skill.zip
 
-## Intended teacher workflow
-
-The teacher sends the website or this GitHub URL to their AI, then says what book they want. The AI handles the library and method setup itself.
-
-## Platform note
-
-An AI client with web or GitHub-reading capability can follow these links directly. If the client requests permission to download or save files, the teacher may approve that normal platform prompt once.
+资料未核实、网络无法读取或工具不支持解压/PDF 时，说明具体限制，不编造完成结果。
