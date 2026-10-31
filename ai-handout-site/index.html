@@ -67,7 +67,7 @@ h1,h2,h3,p{margin-top:0}h1{font-size:clamp(43px,5.8vw,72px);line-height:1.2;lett
 <script>
 (function(){
 'use strict';
-var message='请先读取 https://ai-handout-school.pages.dev/ai.txt ，按其中的 Skill 规则访问公开题库。请沿目录按需读取并核对真实题目，不能只凭文件名声称已经取得题图或评分。准备好后，根据我提供的课程、专题、学生基础、语言和册别开始制作小白书。';
+var message='请先读取 https://ai-handout-school.vercel.app/ai.txt ，按其中的 Skill 规则访问公开题库。请沿目录按需读取并核对真实题目，不能只凭文件名声称已经取得题图或评分。准备好后，根据我提供的课程、专题、学生基础、语言和册别开始制作小白书。';
 var button=document.getElementById('copy'),feedback=document.getElementById('feedback'),fallback=document.getElementById('fallback');
 function manual(){fallback.value=message;fallback.style.display='block';fallback.focus();fallback.select();feedback.textContent='已选中指令，可手动复制并粘贴给 AI。';}
 button.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(message).then(function(){feedback.textContent='已复制，直接粘贴给你的 AI。';fallback.style.display='none';},manual);}else{manual();}});
