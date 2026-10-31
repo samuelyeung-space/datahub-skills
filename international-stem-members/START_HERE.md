@@ -16,6 +16,8 @@
 4. 沿“知识点→辨认题型→固定解法→母题示范→同型跟练→变式→独立练习”编排；学生册与详解册同题号、同顺序。
 5. 若用户尚未说明课程/专题/学生基础等关键条件，只询问缺少的部分；不要重复问已经提供的信息。
 
-完整 ZIP：https://github.com/samuelyeung-space/datahub-skills/raw/refs/heads/main/international-stem-members/ai-handout-skill.zip
+完整 ZIP：https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/ai-handout-skill.zip
+
+**安装提示**：请优先打开 https://ai-handout-school.vercel.app/ai.txt，按当前平台能力尝试真正安装；本机 Codex / Claude Code 可审查和使用公开的 install_skill.py，普通 ChatGPT/Claude 网页端需走宿主 Skills 流程。不能真正安装时，可以仅本次对话应用工作规则，但必须准确说明状态。
 
 资料未核实、网络无法读取或工具不支持解压/PDF 时，说明具体限制，不编造完成结果。
