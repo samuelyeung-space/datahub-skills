@@ -1,6 +1,6 @@
 # AI Handout Site
 
-Static public frontend for the AI handout workflow. The website is the teacher-facing entry; the public GitHub copy supplies machine-readable instructions and learning materials. Private maintenance repositories remain private.
+Static frontend for the AI handout workflow. The website is the teacher-facing entry; the `international-stem-members` folder supplies the machine-readable instructions.
 
 ## Live
 

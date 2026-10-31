@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="把这个网址交给你常用的 AI，让它自行读取公开题库副本与小白书工作规则，然后开始制作讲义。" />
+  <meta name="description" content="把这个网址交给你常用的 AI，让它自行读取题库与小白书工作规则，然后开始制作讲义。" />
   <title>AI 讲义工作台</title>
   <style>
     :root{--bg:#f7f4ed;--panel:#fffdf8;--ink:#20201e;--muted:#696761;--line:#ddd7ca;--accent:#1d6d5a;--accent2:#e7f0ec;--shadow:0 18px 50px rgba(51,45,33,.10)}
@@ -12,7 +12,7 @@
     .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:center}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}.hero h1{font-size:clamp(42px,7vw,78px);line-height:1.02;margin:14px 0 22px;letter-spacing:-.055em}.hero p{font-size:19px;color:var(--muted);max-width:720px}.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
     .steps{counter-reset:s}.step{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:white;font-weight:800}.step strong{display:block;margin-bottom:4px}.step span{color:var(--muted);font-size:14px}
     .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}.primary{background:var(--accent);color:white}.secondary{background:white;border:1px solid var(--line)}
-    .status{margin-top:14px;color:var(--accent);font-size:14px;min-height:24px}.section{margin-top:84px}.section h2{font-size:34px;letter-spacing:-.035em;margin:0 0 16px}.section>p{color:var(--muted);max-width:780px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}.mini{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}.mini h3{margin:0 0 8px;font-size:18px}.mini p{margin:0;color:var(--muted);font-size:14px}
+    .status{margin-top:14px;color:var(--accent);font-size:14px;min-height:24px}.section{margin-top:84px}.section h2{font-size:34px;letter-spacing:-.035em;margin:0 0 16px}.section>p{color:var(--muted);max-width:780px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}.mini{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}.mini h3{margin:0 0 8px;font-size:18px}.mini p{margin:0;color:var(--muted);font-size:14px}
     pre{white-space:pre-wrap;word-break:break-word;background:#1f2523;color:#edf5f1;border-radius:20px;padding:24px;overflow:auto;font-size:14px;line-height:1.7}.links{display:grid;gap:12px;margin-top:22px}.link{display:flex;justify-content:space-between;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;text-decoration:none}.link span{color:var(--muted);font-size:14px}.foot{margin-top:78px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
     @media(max-width:800px){.hero{grid-template-columns:1fr}.nav{margin-bottom:48px}.grid{grid-template-columns:1fr}.hero h1{font-size:48px}}
   </style>
@@ -24,7 +24,7 @@
       <div>
         <div class="eyebrow">One link, then start</div>
         <h1>把这个网址<br>发给你的 AI。</h1>
-        <p>AI 会自行读取公开资料副本与小白书工作规则，按需取得题目、OCR、图片和评分材料，然后只问你想做哪门课、哪个专题、什么语言、要学生册还是详解册。</p>
+        <p>AI 会自行读取题库与小白书工作规则，按需取得题目、图片和评分资料，然后只问你想做哪门课、哪个专题、什么语言、要学生册还是详解册。</p>
         <div class="actions">
           <button class="btn primary" id="copy">复制给 AI 的指令</button>
           <a class="btn secondary" href="https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md" target="_blank" rel="noopener">打开 AI 启动页</a>
@@ -32,54 +32,54 @@
         <div class="status" id="status" aria-live="polite"></div>
       </div>
       <aside class="card">
-        <div class="step"><div><strong>AI 读取入口</strong><span>读取启动说明、公开题库与工作规则。</span></div></div>
-        <div class="step"><div><strong>AI 验证资料</strong><span>实际打开一道题的文字与相关图片，不能只看文件名。</span></div></div>
+        <div class="step"><div><strong>AI 读取入口</strong><span>读取启动说明、题库与工作规则。</span></div></div>
+        <div class="step"><div><strong>AI 验证资料</strong><span>实际打开一道题的文字与图片。</span></div></div>
         <div class="step"><div><strong>你说想做什么</strong><span>课程、专题、学生基础、语言和册别。</span></div></div>
-        <div class="step"><div><strong>AI 开始制作</strong><span>按真实题目与既定工作流生成讲义。</span></div></div>
+        <div class="step"><div><strong>AI 开始制作</strong><span>按真实题目生成讲义。</span></div></div>
       </aside>
     </section>
 
     <section class="section">
-      <h2>老师不需要管理 GitHub</h2>
-      <p>GitHub 是公开资料后端，不是老师的操作后台。老师不需要提交用户名、接受私库邀请、重复输入激活码，也不需要下载整个题库。</p>
+      <h2>题库范围</h2>
+      <p>数学、物理、化学、生物的国际课程与竞赛真题，共 27,284 题，按课程、试卷、题目组织，附原题文件与评分资料。</p>
       <div class="grid">
-        <article class="mini"><h3>公开副本</h3><p>只发布学员与 AI 需要的资料、索引和工作规则；私有维护源库继续保留。</p></article>
-        <article class="mini"><h3>按需取题</h3><p>AI 只读取当前课程与专题需要的题目、图片和评分材料，避免整库搬运。</p></article>
-        <article class="mini"><h3>跨平台使用</h3><p>有网页或 GitHub 读取能力的平台直接跟随链接；不支持持久 Skill 时，在当前对话应用规则。</p></article>
+        <article class="mini"><h3>数学</h3><p>AMC 8 / 10 / 12、AIME、BMO、EGMO、IMO、CEMC、MAT、TMUA、CIE 0580 / 9709、Edexcel IAL / UK、IB AA / AI（HL / SL）、AP 微积分 / 统计、DSE 必修 / M1 / M2</p></article>
+        <article class="mini"><h3>物理</h3><p>CIE 0625 / 9702、Edexcel IAL、IB 物理（HL / SL）、AP 物理、F=ma、USAPhO、DSE 物理</p></article>
+        <article class="mini"><h3>化学</h3><p>CIE 0620 / 9701、Edexcel IAL、IB 化学（HL / SL）、AP 化学、USNCO、DSE 化学</p></article>
+        <article class="mini"><h3>生物 · 综合科学</h3><p>CIE 0610 / 9700 / 0654、Edexcel IAL、IB 生物（HL / SL）、AP 生物、BBO、IBO、DSE 生物</p></article>
       </div>
     </section>
 
     <section class="section">
       <h2>给 AI 的完整指令</h2>
-      <pre id="prompt">请先打开并严格执行这个公开启动页：
+      <pre id="prompt">请先打开并严格执行这个启动页：
 https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md
 
-题库是公开的，无需登录：
+题库地址（直接打开即可读取）：
 https://github.com/samuel-resource-members/international-stem-members
-读取方法见：https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md
+读取方法：https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md
 
-请自行完成以下准备，不要让我手工下载或重新整理整套资料：
+请自行完成以下准备，不要让我手工下载或重新整理资料：
 1. 读取 START_HERE.md、SKILL_BOOTSTRAP.md、QUESTION_BANK_LINKS.md 与 AI_COPY_PROMPT.md。
-2. 使用你现有的网页、GitHub、文件或代码工具，读取公开资料副本与小白书规则。
-3. 实际验证至少一道题的文字和一张相关图片或题面文件；不能仅凭文件名声称已经接通。
-4. 按需取得当前书所需的真实题目、OCR、图片、评分材料和来源信息，不要无必要下载整库。
-5. 如果平台支持持久 Skill，请加载或保存；不支持时，在本次对话中持续执行这些规则。
+2. 使用你现有的网页、GitHub、文件或代码工具，沿链接读取题库与小白书规则。
+3. 实际读到至少一道题的文字和一张相关图片或题面文件之后，才算准备完成。
+4. 按需取得当前书所需的真实题目、图片、评分材料和来源信息，不要整库下载。
+5. 如果你的平台支持保存工作规则，请保存；不支持时，在本次对话中持续执行。
 6. 准备完成后，只问我：课程／考试体系、专题或范围、学生已学内容、语言、需要学生册／详解册／两册。
 
-不要要求我加入私有仓库，也不要让我重复完成 AI 能自行完成的资料整理。</pre>
+不要让我注册、授权或整理资料，这些都由你自己完成。</pre>
     </section>
 
     <section class="section">
-      <h2>公开资料入口</h2>
+      <h2>入口链接</h2>
       <div class="links">
-        <a class="link" href="https://github.com/samuel-resource-members/international-stem-members" target="_blank" rel="noopener"><strong>公开题库</strong><span>27,284 道真题 · 课程 → 试卷 → 单题逐级链接 · 无需登录</span></a>
+        <a class="link" href="https://github.com/samuel-resource-members/international-stem-members" target="_blank" rel="noopener"><strong>题库</strong><span>课程 → 试卷 → 单题，逐级链接</span></a>
         <a class="link" href="https://github.com/samuelyeung-space/datahub-skills/tree/main/international-stem-members" target="_blank" rel="noopener"><strong>AI 启动说明</strong><span>启动页、工作规则、题库读取方法</span></a>
-        <a class="link" href="https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/START_HERE.md" target="_blank" rel="noopener"><strong>机器可读启动页</strong><span>Raw Markdown</span></a>
         <a class="link" href="https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/AI_COPY_PROMPT.md" target="_blank" rel="noopener"><strong>复制给 AI 的文本</strong><span>跨平台通用</span></a>
       </div>
     </section>
 
-    <footer class="foot">网站前台与公开资料副本分离：网站负责引导，GitHub 负责可追踪的公开资料；私有维护源库不对外开放。</footer>
+    <footer class="foot">各考试试题与评分资料的版权归其权利人所有。</footer>
   </main>
   <script>
     const prompt=document.getElementById('prompt').innerText;

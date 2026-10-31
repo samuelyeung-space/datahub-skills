@@ -1,10 +1,10 @@
 # Copy this message to your AI
 
-Please open and follow this public setup page first:
+Please open and follow this setup page first:
 
 https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md
 
-The question bank it points to is public and needs no login:
+Question bank:
 https://github.com/samuel-resource-members/international-stem-members
 Read https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md to learn how its files link together.
 
@@ -22,4 +22,4 @@ Complete the setup yourself before asking me for book details:
    - Which language?
    - Student book, solutions book, or both?
 
-Do not require me to register for, join, or manage a GitHub repository when the linked resources are public. Do not download the entire library unless your environment genuinely needs a local clone.
+Do not ask me to register for, join, or manage anything; open the links yourself. Do not download the entire library unless your environment genuinely needs a local clone.

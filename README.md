@@ -1,4 +1,4 @@
-> **AI handout workflow for teachers** — start at [`international-stem-members/START_HERE.md`](international-stem-members/START_HERE.md). Website: <https://ai-handout-school.pages.dev>. Public question bank: <https://github.com/samuel-resource-members/international-stem-members>.
+> **AI handout workflow for teachers** — start at [`international-stem-members/START_HERE.md`](international-stem-members/START_HERE.md). Website: <https://ai-handout-school.pages.dev>. Question bank: <https://github.com/samuel-resource-members/international-stem-members>.
 
 # datahub-skills
 
