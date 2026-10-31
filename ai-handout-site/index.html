@@ -1,92 +1,77 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="把这个网址交给你常用的 AI，让它自行读取题库与小白书工作规则，然后开始制作讲义。" />
-  <title>AI 讲义工作台</title>
-  <style>
-    :root{--bg:#f7f4ed;--panel:#fffdf8;--ink:#20201e;--muted:#696761;--line:#ddd7ca;--accent:#1d6d5a;--accent2:#e7f0ec;--shadow:0 18px 50px rgba(51,45,33,.10)}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;line-height:1.7}
-    a{color:inherit}.wrap{max-width:1060px;margin:auto;padding:32px 22px 80px}.nav{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:72px}.brand{font-weight:800;letter-spacing:.02em}.badge{font-size:13px;color:var(--accent);background:var(--accent2);border:1px solid #c9ded6;border-radius:999px;padding:7px 12px}
-    .hero{display:grid;grid-template-columns:1.35fr .65fr;gap:32px;align-items:center}.eyebrow{font-size:13px;font-weight:800;letter-spacing:.14em;color:var(--accent);text-transform:uppercase}.hero h1{font-size:clamp(42px,7vw,78px);line-height:1.02;margin:14px 0 22px;letter-spacing:-.055em}.hero p{font-size:19px;color:var(--muted);max-width:720px}.card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:26px;box-shadow:var(--shadow)}
-    .steps{counter-reset:s}.step{display:grid;grid-template-columns:42px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}.step:last-child{border-bottom:0}.step:before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--accent);color:white;font-weight:800}.step strong{display:block;margin-bottom:4px}.step span{color:var(--muted);font-size:14px}
-    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}.btn{appearance:none;border:0;border-radius:14px;padding:14px 18px;font-weight:800;font-size:15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px}.primary{background:var(--accent);color:white}.secondary{background:white;border:1px solid var(--line)}
-    .status{margin-top:14px;color:var(--accent);font-size:14px;min-height:24px}.section{margin-top:84px}.section h2{font-size:34px;letter-spacing:-.035em;margin:0 0 16px}.section>p{color:var(--muted);max-width:780px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:24px}.mini{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px}.mini h3{margin:0 0 8px;font-size:18px}.mini p{margin:0;color:var(--muted);font-size:14px}
-    pre{white-space:pre-wrap;word-break:break-word;background:#1f2523;color:#edf5f1;border-radius:20px;padding:24px;overflow:auto;font-size:14px;line-height:1.7}.links{display:grid;gap:12px;margin-top:22px}.link{display:flex;justify-content:space-between;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;text-decoration:none}.link span{color:var(--muted);font-size:14px}.foot{margin-top:78px;padding-top:28px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
-    @media(max-width:800px){.hero{grid-template-columns:1fr}.nav{margin-bottom:48px}.grid{grid-template-columns:1fr}.hero h1{font-size:48px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,follow,noarchive">
+<meta name="description" content="先讲清知识，再练真实题目。把网址交给你的 AI，制作贴合学生水平的专题讲义与配套练习。">
+<title>小白书工作台｜讲清楚，再做得出</title>
+<style>
+:root{--ink:#1f2925;--muted:#607068;--green:#1b6956;--cream:#f7f7f0;--paper:#fffefa;--line:#dce4db;--soft:#e8f0e9;--gold:#ebba63}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--cream);color:var(--ink);font:16px/1.85 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,a{font:inherit}a{color:inherit}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #8cbaa5;outline-offset:3px}
+.wrap{max-width:1100px;padding:0 26px;margin:auto}.nav{height:88px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);gap:20px}.brand{display:flex;align-items:center;gap:11px;font-weight:800;letter-spacing:-.03em}.mark{display:grid;place-items:center;background:var(--green);width:37px;height:37px;color:white;border-radius:11px;font:bold 22px Georgia,serif}.nav-sub{font-size:13px;color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:65px;align-items:center;padding:106px 0 100px}.eyebrow{font-size:12px;letter-spacing:.15em;font-weight:800;color:var(--green);text-transform:uppercase}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(43px,5.8vw,72px);line-height:1.2;letter-spacing:-.055em;margin:18px 0 22px}h1 em{font-style:normal;color:var(--green)}.lead{font-size:19px;line-height:1.95;color:#4e5c54;max-width:570px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:28px 0 15px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:13px 21px;border-radius:12px;text-decoration:none;border:1px solid transparent;font-weight:760;cursor:pointer}.primary{background:var(--green);color:white}.primary:hover{background:#155444}.secondary{border-color:#bcd1c4;background:var(--paper);color:var(--green)}.secondary:hover{background:var(--soft)}.hint{font-size:13px;color:var(--muted);max-width:550px;margin-bottom:0}.notice{min-height:22px;font-size:13px;color:var(--green);margin-top:9px}.fallback{display:none;width:100%;max-width:590px;height:110px;border:1px solid #a9c4b3;border-radius:11px;padding:12px;background:var(--paper);font:13px/1.6 ui-monospace,monospace;resize:vertical}
+.paper{position:relative;background:var(--paper);border:1px solid var(--line);border-radius:19px;padding:27px 30px 32px;box-shadow:0 21px 55px #233d3012}.paper:before{content:"";position:absolute;width:74px;height:23px;right:30px;top:-12px;background:#edc97c9c;transform:rotate(4deg)}.paper-head{font-size:14px;font-weight:790;margin-bottom:15px}.paper small{color:#839187;font-size:11px;float:right}.line{display:flex;gap:13px;border-top:1px dashed var(--line);padding:15px 0}.num{font:bold 13px ui-monospace,monospace;color:var(--green);flex:0 0 27px}.line strong{font-size:15px;line-height:1.4}.line p{font-size:13px;line-height:1.8;color:var(--muted);margin:3px 0 0}.stamp{background:var(--soft);color:var(--green);font-size:13px;font-weight:720;padding:11px 14px;border-radius:10px;margin-top:12px}
+.section{border-top:1px solid var(--line);padding:72px 0}.label{color:var(--green);font-weight:760;font-size:12px;letter-spacing:.13em;margin-bottom:11px}h2{font-size:clamp(29px,3.5vw,41px);letter-spacing:-.038em;line-height:1.35;margin-bottom:15px}.sub{color:var(--muted);max-width:720px;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:var(--paper);border:1px solid var(--line);padding:26px;border-radius:17px}.card .no{font:700 13px ui-monospace,monospace;color:var(--green);margin-bottom:18px}.card h3{font-size:18px;letter-spacing:-.02em;margin-bottom:8px}.card p{font-size:14px;color:var(--muted);margin:0}
+.method{display:grid;grid-template-columns:1fr 1fr;gap:42px}.method ul{list-style:none;margin:0;padding:25px 28px;display:grid;gap:14px;background:var(--soft);border-radius:18px;border:1px solid #d8e9df}.method li{display:flex;gap:12px;font-size:15px;font-weight:650}.method li:before{content:"";background:var(--green);width:8px;height:8px;border-radius:50%;flex:0 0 8px;margin-top:11px}.chips{display:flex;gap:10px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:var(--paper);font-size:14px;padding:7px 13px;border-radius:999px}.sample{background:var(--paper);padding:19px 22px;border:1px solid var(--line);border-radius:14px;margin-top:23px;font-size:14px}.sample p{margin:7px 0 0;color:var(--muted)}
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:17px}.faq details{border:1px solid var(--line);border-radius:14px;padding:17px 21px;background:var(--paper)}.faq summary{cursor:pointer;font-weight:760}.faq p{font-size:14px;color:var(--muted);margin:12px 0 0}
+.footer{border-top:1px solid var(--line);padding:25px 0 45px;font-size:12px;color:#77867c;display:flex;justify-content:space-between;gap:20px}.footer a{text-underline-offset:3px}
+@media(max-width:800px){.hero{grid-template-columns:1fr;gap:45px;padding:75px 0}.grid,.method,.faq{grid-template-columns:1fr}.section{padding:53px 0}.paper{max-width:580px}.nav-sub{display:none}}@media(max-width:450px){.wrap{padding:0 18px}.actions .btn{width:100%}.paper{padding:23px}body{font-size:15px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
 </head>
 <body>
-  <main class="wrap">
-    <nav class="nav"><div class="brand">AI 讲义工作台</div><div class="badge">GPT · Claude · 豆包 · DeepSeek</div></nav>
-    <section class="hero">
-      <div>
-        <div class="eyebrow">One link, then start</div>
-        <h1>把这个网址<br>发给你的 AI。</h1>
-        <p>AI 会自行读取题库与小白书工作规则，按需取得题目、图片和评分资料，然后只问你想做哪门课、哪个专题、什么语言、要学生册还是详解册。</p>
-        <div class="actions">
-          <button class="btn primary" id="copy">复制给 AI 的指令</button>
-          <a class="btn secondary" href="https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md" target="_blank" rel="noopener">打开 AI 启动页</a>
-        </div>
-        <div class="status" id="status" aria-live="polite"></div>
-      </div>
-      <aside class="card steps">
-        <div class="step"><div><strong>AI 读取入口</strong><span>读取启动说明、题库与工作规则。</span></div></div>
-        <div class="step"><div><strong>AI 验证资料</strong><span>实际打开一道题的文字与图片。</span></div></div>
-        <div class="step"><div><strong>你说想做什么</strong><span>课程、专题、学生基础、语言和册别。</span></div></div>
-        <div class="step"><div><strong>AI 开始制作</strong><span>按真实题目生成讲义。</span></div></div>
-      </aside>
-    </section>
-
-    <section class="section">
-      <h2>题库范围</h2>
-      <p>数学、物理、化学、生物的国际课程与竞赛真题，共 27,284 题，按课程、试卷、题目组织，附原题文件与评分资料。</p>
-      <div class="grid">
-        <article class="mini"><h3>数学</h3><p>AMC 8 / 10 / 12、AIME、BMO、EGMO、IMO、CEMC、MAT、TMUA、CIE 0580 / 9709、Edexcel IAL / UK、IB AA / AI（HL / SL）、AP 微积分 / 统计、DSE 必修 / M1 / M2</p></article>
-        <article class="mini"><h3>物理</h3><p>CIE 0625 / 9702、Edexcel IAL、IB 物理（HL / SL）、AP 物理、F=ma、USAPhO、DSE 物理</p></article>
-        <article class="mini"><h3>化学</h3><p>CIE 0620 / 9701、Edexcel IAL、IB 化学（HL / SL）、AP 化学、USNCO、DSE 化学</p></article>
-        <article class="mini"><h3>生物 · 综合科学</h3><p>CIE 0610 / 9700 / 0654、Edexcel IAL、IB 生物（HL / SL）、AP 生物、BBO、IBO、DSE 生物</p></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>给 AI 的完整指令</h2>
-      <pre id="prompt">请先打开并严格执行这个启动页：
-https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/START_HERE.md
-
-题库地址（直接打开即可读取）：
-https://github.com/samuel-resource-members/international-stem-members
-读取方法：https://raw.githubusercontent.com/samuel-resource-members/international-stem-members/main/catalog/README.md
-
-请自行完成以下准备，不要让我手工下载或重新整理资料：
-1. 读取 START_HERE.md、SKILL_BOOTSTRAP.md、QUESTION_BANK_LINKS.md 与 AI_COPY_PROMPT.md。
-2. 使用你现有的网页、GitHub、文件或代码工具，沿链接读取题库与小白书规则。
-3. 实际读到至少一道题的文字和一张相关图片或题面文件之后，才算准备完成。
-4. 按需取得当前书所需的真实题目、图片、评分材料和来源信息，不要整库下载。
-5. 如果你的平台支持保存工作规则，请保存；不支持时，在本次对话中持续执行。
-6. 准备完成后，只问我：课程／考试体系、专题或范围、学生已学内容、语言、需要学生册／详解册／两册。
-
-不要让我注册、授权或整理资料，这些都由你自己完成。</pre>
-    </section>
-
-    <section class="section">
-      <h2>入口链接</h2>
-      <div class="links">
-        <a class="link" href="https://github.com/samuel-resource-members/international-stem-members" target="_blank" rel="noopener"><strong>题库</strong><span>课程 → 试卷 → 单题，逐级链接</span></a>
-        <a class="link" href="https://github.com/samuelyeung-space/datahub-skills/tree/main/international-stem-members" target="_blank" rel="noopener"><strong>AI 启动说明</strong><span>启动页、工作规则、题库读取方法</span></a>
-        <a class="link" href="https://github.com/samuelyeung-space/datahub-skills/blob/main/international-stem-members/AI_COPY_PROMPT.md" target="_blank" rel="noopener"><strong>复制给 AI 的文本</strong><span>跨平台通用</span></a>
-      </div>
-    </section>
-
-    <footer class="foot">各考试试题与评分资料的版权归其权利人所有。</footer>
-  </main>
-  <script>
-    const prompt=document.getElementById('prompt').innerText;
-    document.getElementById('copy').addEventListener('click',async()=>{
-      try{await navigator.clipboard.writeText(prompt);document.getElementById('status').textContent='已复制，直接粘贴给你的 AI。'}
-      catch(e){document.getElementById('status').textContent='浏览器未允许自动复制，请手动复制下方指令。'}
-    });
-  </script>
+<div class="wrap">
+<header class="nav"><div class="brand"><span class="mark" aria-hidden="true">∑</span>小白书工作台</div><div class="nav-sub">国际课程 · 竞赛数学 · 真题专题</div></header>
+<main>
+<section class="hero" aria-labelledby="hero">
+<div><div class="eyebrow">From understanding to solving</div>
+<h1 id="hero">把网址发给 AI，<br><em>做一本学生看得懂的书。</em></h1>
+<p class="lead">先把知识点讲清楚，再教学生怎么认题、怎么下笔。让 AI 沿真实试题组织母题示范、同型跟练和完整解析。</p>
+<div class="actions"><button class="btn primary" id="copy" type="button">复制给我的 AI</button><a class="btn secondary" href="https://github.com/samuelyeung-space/datahub-skills/raw/refs/heads/main/international-stem-members/ai-handout-skill.zip" download>下载完整 Skill</a></div>
+<p class="hint">直接发网址即可开始。支持导入 Skills 的 AI，也可以下载完整技能包；具体联网、解压及 PDF 功能依平台而定。</p>
+<div id="feedback" class="notice" role="status" aria-live="polite"></div><textarea id="fallback" class="fallback" readonly aria-label="可手动复制的文本"></textarea>
+</div>
+<div class="paper" aria-label="讲义内容示例"><div class="paper-head">一份讲义的学习路径 <small>STUDY NOTES</small></div>
+<div class="line"><span class="num">01</span><div><strong>知识点先讲清楚</strong><p>从概念与图示开始，新符号有解释。</p></div></div>
+<div class="line"><span class="num">02</span><div><strong>学会辨认题型</strong><p>题干有什么信号，什么时候用这个方法。</p></div></div>
+<div class="line"><span class="num">03</span><div><strong>母题完整示范</strong><p>每一步都讲清依据与推导。</p></div></div>
+<div class="line"><span class="num">04</span><div><strong>同型练习接着做</strong><p>从模仿、变式到独立解题。</p></div></div>
+<div class="stamp">学生册与详解册 · 结构和题号相互对应</div></div>
+</section>
+<section class="section" id="how"><div class="label">HOW TO START</div><h2>三步，开始做你的专题讲义</h2><p class="sub">不需要手工整理整套题库。把课程和专题说清楚，剩余工作尽量交给 AI。</p>
+<div class="grid">
+<article class="card"><div class="no">01 / OPEN</div><h3>发给 AI</h3><p>点击上方按钮复制指令，粘贴进你正在使用的 AI 对话。</p></article>
+<article class="card"><div class="no">02 / TELL</div><h3>说出教学要求</h3><p>告诉它考试体系、知识专题、学生基础、语言和册别。</p></article>
+<article class="card"><div class="no">03 / MAKE</div><h3>检查和使用</h3><p>先核对真题、图形和答案，再整理成学生册与配套详解。</p></article>
+</div></section>
+<section class="section method"><div><div class="label">TEACHING METHOD</div><h2>不是堆题，而是让学生一步步学会</h2><p class="sub">每一道练习都接在教过的方法后面。学生知道第一步从哪里来，也能看出不同条件为什么换做法。</p>
+<div class="chips"><span class="chip">IB / AP</span><span class="chip">CIE / Edexcel</span><span class="chip">DSE</span><span class="chip">AMC / AIME</span><span class="chip">数学 · 物理 · 化学 · 生物</span></div>
+<div class="sample"><strong>例如你可以直接说</strong><p>“做一本 IB AA HL 复数专题英文小白书，先解释几何意义，再分类讲解真实母题；学生册和详解册分开。”</p></div></div>
+<ul aria-label="教学编排步骤"><li>知识点和符号先讲明白</li><li>题型识别条件写清楚</li><li>固定解法可以照着做</li><li>真实母题步骤完整</li><li>同型跟练循序渐进</li><li>答案与练习逐题对应</li></ul></section>
+<section class="section"><div class="label">QUESTIONS</div><h2>常见问题</h2>
+<div class="faq">
+<details><summary>需要下载所有试卷吗？</summary><p>不需要。AI 可以按课程、试卷与题号查找文字及分类；包含复杂图形的题目需要另外核对相应原卷或图片。材料不齐时应换题或说明缺口。</p></details>
+<details><summary>为什么还提供 Skill 包？</summary><p>支持 Skills 的 AI 可以导入整套工作规则和检索工具。其他支持网页读取的 AI 可以先按公开说明开始，能力有限的功能会明确提示。</p></details>
+<details><summary>学生册里有练习答案吗？</summary><p>母题带完整示范；独立练习不直接附答案。另一本详解册保持同样编号和顺序，并给出每道练习的答案及详细推导。</p></details>
+<details><summary>一定能直接生成 PDF 吗？</summary><p>要看所使用的 AI 是否支持文件与排版工具。支持时可以实际输出并检查 PDF；否则先交付可编辑书稿，不会把未生成的文件当成已完成。</p></details>
+</div></section>
+</main>
+<footer class="footer"><span>小白书工作台 · 从知识到真题训练</span><span><a href="/ai.txt">AI 阅读入口</a>　·　试题版权归原权利人所有</span></footer>
+</div>
+<script>
+(function(){
+'use strict';
+var message='请先读取 https://ai-handout-school.pages.dev/ai.txt ，按其中的 Skill 规则访问公开题库。请沿目录按需读取并核对真实题目，不能只凭文件名声称已经取得题图或评分。准备好后，根据我提供的课程、专题、学生基础、语言和册别开始制作小白书。';
+var button=document.getElementById('copy'),feedback=document.getElementById('feedback'),fallback=document.getElementById('fallback');
+function manual(){fallback.value=message;fallback.style.display='block';fallback.focus();fallback.select();feedback.textContent='已选中指令，可手动复制并粘贴给 AI。';}
+button.addEventListener('click',function(){if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(message).then(function(){feedback.textContent='已复制，直接粘贴给你的 AI。';fallback.style.display='none';},manual);}else{manual();}});
+})();
+</script>
 </body>
 </html>
