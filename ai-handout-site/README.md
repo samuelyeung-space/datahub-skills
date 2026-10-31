@@ -1,25 +1,13 @@
-# AI Handout Site
+# 小白书工作台
 
-Static frontend for the AI handout workflow. The website is the teacher-facing entry; the `international-stem-members` folder supplies the machine-readable instructions.
+面向教师的公开静态入口：https://ai-handout-school.vercel.app/
 
-## Live
+AI 机器读取说明：https://ai-handout-school.vercel.app/ai.txt
 
-- Cloudflare Pages project `ai-handout-school`: <https://ai-handout-school.pages.dev> (deployed with `wrangler pages deploy`; only `index.html`, `ai.txt`, `404.html`, `_headers` are uploaded)
+分享版 Skill：https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/skills/ai-handout-skill/SKILL.md
 
-## Vercel
+公开真题库：https://github.com/samuel-resource-members/international-stem-members
 
-- Import repository: `samuelyeung-space/datahub-skills`
-- Root Directory: `ai-handout-site`
-- Framework Preset: `Other`
-- Build Command: leave empty
-- Output Directory: `.`
+网页源代码在本目录，包含 index.html、ai.txt、vercel.json、_headers。Vercel 项目从此目录部署；Cloudflare Pages 旧地址可能没有与本次源代码同步。
 
-## Cloudflare Pages
-
-- Connect repository: `samuelyeung-space/datahub-skills`
-- Production branch: `main`
-- Root directory: `ai-handout-site`
-- Build command: leave empty
-- Build output directory: `.`
-
-`index.html` is the human-facing page. `ai.txt` is the plain-text machine entry. `_headers` is used by Cloudflare Pages; `vercel.json` supplies the equivalent Vercel configuration.
+不在页面和仓库中加入凭据、学员私人资料或未授权的私库资源。网页本身不下载题库大文件。
