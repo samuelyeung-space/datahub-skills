@@ -1,5 +1,5 @@
 小白书工作台 · 公开 AI 阅读入口
-https://ai-handout-school.pages.dev/
+https://ai-handout-school.vercel.app/
 
 完整 Skill 规则：
 https://raw.githubusercontent.com/samuelyeung-space/datahub-skills/main/international-stem-members/skills/ai-handout-skill/SKILL.md
