@@ -4,7 +4,7 @@ Static public frontend for the AI handout workflow. The website is the teacher-f
 
 ## Live
 
-- Cloudflare Pages project `ai-handout-school`: <https://ai-handout-school.pages.dev> (deployed with `wrangler pages deploy`; only `index.html`, `ai.txt`, `_headers` are uploaded)
+- Cloudflare Pages project `ai-handout-school`: <https://ai-handout-school.pages.dev> (deployed with `wrangler pages deploy`; only `index.html`, `ai.txt`, `404.html`, `_headers` are uploaded)
 
 ## Vercel
 
