@@ -41,6 +41,10 @@ class FakeGitHub:
                 {"type": "blob", "path": "src/voice.py", "size": 200},
                 {"type": "blob", "path": "secrets.env", "size": 50},
             ]}
+        if path == "/repos/widget/qq-balance/readme":
+            doc = "A cute QQ balance widget with simple animation and dragging."
+            return {"encoding": "base64",
+                    "content": base64.b64encode(doc.encode()).decode()}
         if path == "/repos/human/voice/readme":
             doc = "Demos: https://www.bilibili.com/video/BV1abc123456/ and source code."
             return {"encoding": "base64",
@@ -63,6 +67,18 @@ class SocialProofTests(unittest.TestCase):
         self.assertEqual(rows[0]["repo"], "human/voice")
         self.assertEqual(rows[0]["stars"], 3608)
         self.assertGreaterEqual(len(rows[0]["discovery_routes"]), 2)
+
+    def test_popular_but_irrelevant_widget_does_not_crowd_voice(self):
+        voice = scan.summarized(item())
+        widget = scan.summarized(item("widget/qq-balance", 7069, 223))
+        widget["description"] = "QQ弹弹：balance widget with animations"
+        rows = sorted([widget, voice], key=scan.adoption_key)
+        self.assertEqual(rows[0]["repo"], "widget/qq-balance")
+        meta = {"errors": []}
+        selected = scan.filter_required_features(
+            FakeGitHub(), rows, [r"QQ|OneBot", r"TTS|voice|语音|RVC"], meta)
+        self.assertEqual([x["repo"] for x in selected], ["human/voice"])
+        self.assertEqual(meta["feature_matched"], 1)
 
     def test_seeding_known_project_works(self):
         rows, meta = scan.discovery(FakeGitHub(), [], ["human/voice"])
