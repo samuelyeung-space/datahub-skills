@@ -228,8 +228,8 @@ def readme_demo_links(api, row):
         content = base64.b64decode(response["content"]).decode("utf-8", errors="replace")
         results, seen = [], set()
         for n, line in enumerate(content.splitlines(), 1):
-            for match in re.findall(r"https://[^\\s\\)\\]<>\\\"']+", line):
-                url = match.rstrip(".,;")
+            for match in re.findall(r'https?://[^\s<>()]+', line):
+                url = match.split('"')[0].split("'")[0].rstrip(".,;]")
                 host = (urlparse(url).hostname or "").lower()
                 if not any(host == d or host.endswith("." + d) for d in SOCIAL_DOMAINS):
                     continue
