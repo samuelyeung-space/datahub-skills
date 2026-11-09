@@ -52,6 +52,8 @@ jobs:
             --seed Derpyu520/qq-bridge \
             --seed aureth-labs/dsh-aurabot-qq \
             --per-query 12 --limit 16 \
+            --require-code tts_model --require-code qq_delivery \
+            --code-screen-top 16 \
             --discussion-top 4 --inspect-top 2 \
             --output /tmp/github-voice-live.json
           python3 - <<'PY'
