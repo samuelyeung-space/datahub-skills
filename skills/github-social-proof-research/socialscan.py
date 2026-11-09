@@ -396,6 +396,10 @@ def main(argv=None):
     parser.add_argument("--require", action="append", default=[],
                         help="Mechanical feature regex gate (repeated terms must ALL occur in repo metadata/README)")
     parser.add_argument("--social-file", help="Externally observed social demo URLs and numeric engagement")
+    parser.add_argument("--require-code", action="append", choices=sorted(SOURCE_RX),
+                        default=[], help="Require source-linked functional marker before ranking (repeatable)")
+    parser.add_argument("--code-screen-top", type=int, default=20,
+                        help="Maximum popularity-ranked candidates to source-screen, default 20")
     parser.add_argument("--per-query", type=int, default=20)
     parser.add_argument("--pages", type=int, default=1)
     parser.add_argument("--limit", type=int, default=60)
@@ -418,11 +422,29 @@ def main(argv=None):
                                         pages=args.pages, limit=screening_cap)
     rows = filter_required_features(api, rows, args.require, discovery_record)
     rows = sorted(rows, key=adoption_key)[:args.limit]
+    if args.require_code:
+        if not (1 <= args.code_screen_top <= 80):
+            parser.error("--code-screen-top must be 1..80")
+        screened = rows[:args.code_screen_top]
+        for row in screened:
+            inspect_source(api, row, file_limit=20, hit_limit=80)
+        survivors = [
+            row for row in screened
+            if all(kind in {hit["kind"] for hit in row.get("implementation_sources", [])}
+                   for kind in args.require_code)
+        ]
+        discovery_record["code_required"] = args.require_code
+        discovery_record["code_screened"] = len(screened)
+        discovery_record["code_matched"] = len(survivors)
+        discovery_record["code_not_screened_due_budget"] = max(0, len(rows)-len(screened))
+        # Functional eligibility is binary. Popularity still determines order.
+        rows = sorted(survivors, key=adoption_key)[:args.limit]
     attach_social(rows, load_social(args.social_file))
     for row in rows[:args.discussion_top]:
         sample_issues(api, row)
     for row in rows[:args.inspect_top]:
-        inspect_source(api, row)
+        if "inspection" not in row:
+            inspect_source(api, row)
     rows.sort(key=adoption_key)
     write_reports(rows, discovery_record, args.output)
     print(json.dumps({"projects": len(rows), "github_calls": api.calls,
