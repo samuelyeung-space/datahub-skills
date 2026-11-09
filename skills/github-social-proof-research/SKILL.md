@@ -26,6 +26,8 @@ python3 socialscan.py \
   --query '"DeepSeek Harness" "QQ"' \
   --query '"OneBot" "TTS"' \
   --query '"QQ" "GPT-SoVITS"' \
+  --require 'QQ|OneBot|NapCat|AstrBot' \
+  --require '语音|声音|voice|TTS|RVC|CosyVoice|speech' \
   --seed Derpyu520/qq-bridge \
   --seed aureth-labs/dsh-aurabot-qq \
   --discussion-top 10 --inspect-top 5 \
@@ -47,3 +49,7 @@ Required columns: repository URL; Stars; Forks; real discussion links and sample
 - Never copy/paste access tokens, log authorization headers, extract browser cookies or scrape protected groups.
 - GitHub Search REST has a **1,000-result maximum per query** and rate limits. GitHub code indexing can omit forks and nondefault branches.
 - A massive Star count indicates adoption/visibility, but quality claims such as "声音很真人" still require hearing a real posted recording and reviewing real user comments.
+
+### Objective feature eligibility
+
+A high-Star DSH account-balance widget can be genuinely popular yet unrelated to QQ speech. Supply two repeated `--require` patterns: one for the messaging ecosystem, one for the voice feature. The CLI checks repository name/description and then public README text before taking the highest social-adoption candidates. It reports how many were excluded, and how many could not be checked within the README budget. The patterns establish functional relevance, not an AI quality judgement.
