@@ -210,6 +210,42 @@ def attach_social(rows, observations):
     return rows
 
 
+def safe_excerpt(line):
+    """Never expose credential-bearing source lines in an agent report."""
+    if re.search(r"api[_-]?key|access[_-]?token|client[_-]?secret|password|authorization|bearer", line, re.I):
+        return "[credential-bearing line redacted]"
+    return line.strip()[:200]
+
+
+def readme_demo_links(api, row):
+    """Discover creator-linked videos; this does NOT fetch playback or engagement."""
+    name = slug_of(row["repo"])
+    try:
+        response = api.get("/repos/" + name + "/readme")
+        if response.get("encoding") != "base64":
+            row["readme_demo_links"] = []
+            return
+        content = base64.b64decode(response["content"]).decode("utf-8", errors="replace")
+        results, seen = [], set()
+        for n, line in enumerate(content.splitlines(), 1):
+            for match in re.findall(r"https://[^\\s\\)\\]<>\\\"']+", line):
+                url = match.rstrip(".,;")
+                host = (urlparse(url).hostname or "").lower()
+                if not any(host == d or host.endswith("." + d) for d in SOCIAL_DOMAINS):
+                    continue
+                if url in seen:
+                    continue
+                seen.add(url)
+                results.append({
+                    "url": url, "readme_line": n,
+                    "readme_source": response.get("html_url"),
+                    "status": "linked_in_readme_not_played_or_counted",
+                })
+        row["readme_demo_links"] = results[:20]
+    except (GitHubError, ValueError, KeyError):
+        row["readme_demo_links"] = []
+
+
 def inspect_source(api, row, file_limit=15, hit_limit=16):
     name = slug_of(row["repo"])
     branch = row.get("default_branch") or "main"
@@ -232,7 +268,7 @@ def inspect_source(api, row, file_limit=15, hit_limit=16):
                 for kind, rx in SOURCE_RX.items():
                     if rx.search(line):
                         hits.append({"kind": kind, "path": file_path, "line": line_no,
-                                     "excerpt": line.strip()[:200],
+                                     "excerpt": safe_excerpt(line),
                                      "url": f"https://github.com/{name}/blob/{quote(branch, safe='')}/{quote(file_path, safe='/')}#L{line_no}",
                                      "file_sha": content.get("sha")})
                     if len(hits) >= hit_limit:
@@ -248,6 +284,7 @@ def inspect_source(api, row, file_limit=15, hit_limit=16):
                               "executed_third_party_code": False}
     except (GitHubError, ValueError, KeyError) as exc:
         row["inspection"] = {"error": str(exc), "truncated": True}
+    readme_demo_links(api, row)
     return row
 
 
@@ -289,7 +326,11 @@ def write_reports(rows, discovery_record, output):
         comments = sample.get("top_issue_comments_sum")
         counts = "not sampled" if comments is None else str(comments)
         social = row.get("external_social") or []
-        refs = ", ".join("[" + str(x["platform"]) + "](" + x["url"] + ")" for x in social) or "not collected"
+        refs = ", ".join("[" + str(x["platform"]) + "](" + x["url"] + ")" for x in social)
+        if not refs:
+            linked = row.get("readme_demo_links") or []
+            refs = (", ".join("[README link](" + x["url"] + ")" for x in linked[:2]) +
+                    " (unverified)" if linked else "not collected")
         lines.append(f"| {row['rank']} | [{row['repo']}]({row['url']}) | {row['stars']:,} | {row['forks']:,} | {counts} | {refs} |")
     lines += ["", "## Source code entry points (do not affect popularity rank)", ""]
     for row in rows:
