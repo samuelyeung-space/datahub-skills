@@ -27,7 +27,7 @@ QUERIES = [
     '"QQ" "RVC"', '"QQ" "Breeze"',
 ]
 SOURCE_RX = {
-    "tts_model": re.compile(r"cosyvoice|gpt[-_]?sovits|rvc|voxcpm|index[-_]?tts|breeze|seed[-_]?tts|mimo|voiceclone", re.I),
+    "tts_model": re.compile(r"cosyvoice|gpt[-_]?sovits|rvc|voxcpm|index[-_]?tts|breeze|seed[-_]?tts|edge[-_]?tts|text_to_speech|tts_speak|mimo|voiceclone", re.I),
     "qq_delivery": re.compile(r"send_group_msg|send_private_msg|qq_send_voice|qq_say_voice|sendVoice|Comp\.Record|onebot|ntsilk|['\"]record['\"]", re.I),
     "voice_config": re.compile(r"ref_audio_path|reference_audio|ref_audio|voice_id|speaker_id|voice_model|emotion|prompt_text|rvcPitch", re.I),
 }
