@@ -21,6 +21,8 @@ python3 socialscan.py \
   --query '"DeepSeek Harness" "QQ"' \
   --query '"OneBot" "TTS"' \
   --query '"QQ" "GPT-SoVITS"' \
+  --require 'QQ|OneBot|NapCat|AstrBot' \
+  --require '语音|声音|voice|TTS|RVC|CosyVoice|speech' \
   --seed Derpyu520/qq-bridge \
   --seed aureth-labs/dsh-aurabot-qq \
   --discussion-top 10 --inspect-top 5 \
@@ -71,3 +73,8 @@ The report distinguishes:
 ## License & boundaries
 
 Apache License 2.0, inherited from the public repository root [LICENSE](../../LICENSE). Read-only analysis; never installs, runs, contacts or controls the selected software. It does not reproduce third-party voice models, bypass QQ access restrictions or use somebody's private recordings.
+
+
+### Objective feature eligibility
+
+A high-Star DSH account-balance widget can be genuinely popular yet unrelated to QQ speech. Supply two repeated `--require` patterns: one for the messaging ecosystem, one for the voice feature. The CLI checks repository name/description and then public README text before taking the highest social-adoption candidates. It reports how many were excluded, and how many could not be checked within the README budget. The patterns establish functional relevance, not an AI quality judgement.
