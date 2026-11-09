@@ -30,6 +30,8 @@ python3 socialscan.py \
   --require '语音|声音|voice|TTS|RVC|CosyVoice|speech' \
   --seed Derpyu520/qq-bridge \
   --seed aureth-labs/dsh-aurabot-qq \
+  --require-code tts_model --require-code qq_delivery \
+  --code-screen-top 16 \
   --discussion-top 10 --inspect-top 5 \
   --output qq-voice.json
 ```
@@ -53,3 +55,5 @@ Required columns: repository URL; Stars; Forks; real discussion links and sample
 ### Objective feature eligibility
 
 A high-Star DSH account-balance widget can be genuinely popular yet unrelated to QQ speech. Supply two repeated `--require` patterns: one for the messaging ecosystem, one for the voice feature. The CLI checks repository name/description and then public README text before taking the highest social-adoption candidates. It reports how many were excluded, and how many could not be checked within the README budget. The patterns establish functional relevance, not an AI quality judgement.
+
+Code-driven functional eligibility: repeat `--require-code tts_model` and `--require-code qq_delivery` to require real source signatures for both voice generation and QQ delivery. This checks **presence**, not quality. It consumes more GitHub API calls and can miss implementations hidden behind generated files, external services or an insufficient file-inspection budget. Explicit seeds survive README filters but still need to meet code requirements.
