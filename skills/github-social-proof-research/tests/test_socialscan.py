@@ -41,6 +41,11 @@ class FakeGitHub:
                 {"type": "blob", "path": "src/voice.py", "size": 200},
                 {"type": "blob", "path": "secrets.env", "size": 50},
             ]}
+        if path == "/repos/human/voice/readme":
+            doc = "Demos: https://www.bilibili.com/video/BV1abc123456/ and source code."
+            return {"encoding": "base64",
+                    "content": base64.b64encode(doc.encode()).decode(),
+                    "html_url": "https://github.com/human/voice/blob/main/README.md"}
         if path == "/repos/human/voice/contents/src/voice.py":
             code = "model = 'GPT-SoVITS'\nref_audio_path = 'file.wav'\nqq_send_voice(text)\n"
             return {"encoding": "base64",
@@ -111,6 +116,13 @@ class SocialProofTests(unittest.TestCase):
         self.assertTrue(any(x["kind"] == "qq_delivery" for x in found))
         self.assertTrue(any(x["url"].endswith("#L3") for x in found))
         self.assertTrue(all("secrets.env" not in x["path"] for x in found))
+        self.assertEqual(len(row["readme_demo_links"]), 1)
+        self.assertEqual(row["readme_demo_links"][0]["status"],
+                         "linked_in_readme_not_played_or_counted")
+
+    def test_credentials_are_redacted(self):
+        self.assertIn("redacted", scan.safe_excerpt("voice_id='a'; api_key='never show'"))
+        self.assertEqual(scan.safe_excerpt("voice_id='a'"), "voice_id='a'")
 
     def test_repo_url_input_not_arbitrary_hosts(self):
         self.assertEqual(scan.slug_of("https://github.com/owner/repo/blob/main/README.md"),
