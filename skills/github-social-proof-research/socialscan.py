@@ -148,6 +148,49 @@ def discovery(api, queries, seeds, per_query=20, pages=1, limit=100):
     return result[:limit], record
 
 
+def filter_required_features(api, rows, required, record, max_readme_checks=100):
+    """Mechanical relevance gate BEFORE sorting by human popularity.
+
+    This is NOT an AI judgement of merit. It checks supplied observable terms
+    against repository name/description and, when necessary, its public README.
+    Unchecked projects are reported explicitly rather than declared irrelevant.
+    """
+    if not required:
+        record["feature_requirements"] = []
+        return rows
+    if len(required) > 6 or any(len(pattern) > 130 for pattern in required):
+        raise ValueError("Use up to 6 short feature requirements")
+    terms = [re.compile(pattern, re.I) for pattern in required]
+    matched, skipped = [], 0
+    readme_count, readme_errors = 0, 0
+    for row in rows:
+        text = row["repo"] + "\n" + row["description"]
+        if all(rx.search(text) for rx in terms):
+            row["feature_match_source"] = "name_or_description"
+            matched.append(row)
+            continue
+        if readme_count >= max_readme_checks:
+            skipped += 1
+            continue
+        readme_count += 1
+        try:
+            response = api.get("/repos/" + slug_of(row["repo"]) + "/readme")
+            if response.get("encoding") == "base64":
+                text += "\n" + base64.b64decode(response["content"]).decode("utf-8", errors="replace")[:150000]
+        except (GitHubError, ValueError, KeyError):
+            readme_errors += 1
+        if all(rx.search(text) for rx in terms):
+            row["feature_match_source"] = "public_README"
+            matched.append(row)
+    record["feature_requirements"] = list(required)
+    record["feature_matched"] = len(matched)
+    record["feature_excluded_or_unchecked"] = len(rows) - len(matched)
+    record["readme_eligibility_checks"] = readme_count
+    record["readme_eligibility_errors"] = readme_errors
+    record["not_checked_after_readme_budget"] = skipped
+    return matched
+
+
 def adoption_key(row):
     discussion = row.get("discussion_sample") or {}
     count = discussion.get("top_issue_comments_sum") or 0
@@ -350,6 +393,8 @@ def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--query", action="append", help="Repeat for distinct search families")
     parser.add_argument("--seed", action="append", default=[], help="Explicit owner/repo or GitHub URL")
+    parser.add_argument("--require", action="append", default=[],
+                        help="Mechanical feature regex gate (repeated terms must ALL occur in repo metadata/README)")
     parser.add_argument("--social-file", help="Externally observed social demo URLs and numeric engagement")
     parser.add_argument("--per-query", type=int, default=20)
     parser.add_argument("--pages", type=int, default=1)
@@ -366,8 +411,13 @@ def main(argv=None):
     if len(queries) > 20:
         parser.error("Use at most 20 search queries per run")
     api = GitHubAPI()
+    # Scan more than the final output cap so high-star unrelated repos do not
+    # crowd out actual implementations before the objective feature gate.
+    screening_cap = min(300, max(args.limit * 4, 80)) if args.require else args.limit
     rows, discovery_record = discovery(api, queries, args.seed, per_query=args.per_query,
-                                        pages=args.pages, limit=args.limit)
+                                        pages=args.pages, limit=screening_cap)
+    rows = filter_required_features(api, rows, args.require, discovery_record)
+    rows = sorted(rows, key=adoption_key)[:args.limit]
     attach_social(rows, load_social(args.social_file))
     for row in rows[:args.discussion_top]:
         sample_issues(api, row)
