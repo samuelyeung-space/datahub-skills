@@ -27,3 +27,46 @@ jobs:
           cd skills/github-social-proof-research
           python3 -m unittest discover -s tests -v
           python3 -m py_compile socialscan.py
+
+  live-popularity-smoke:
+    # Only on explicit code changes/manual dispatch; no scheduled quotas or background service.
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Live public GitHub search and top-code tracing
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          cd skills/github-social-proof-research
+          python3 socialscan.py \
+            --query '"DeepSeek Harness" "QQ"' \
+            --query '"QQ" "GPT-SoVITS"' \
+            --seed Derpyu520/qq-bridge \
+            --seed aureth-labs/dsh-aurabot-qq \
+            --per-query 12 --limit 16 \
+            --discussion-top 4 --inspect-top 2 \
+            --output /tmp/github-voice-live.json
+          python3 - <<'PY'
+          import json
+          p=json.load(open('/tmp/github-voice-live.json'))
+          print('GITHUB LIVE FINDINGS:')
+          for r in p['projects'][:8]:
+              print(f"{r['rank']:2}. {r['repo']}: {r['stars']} stars; {r['forks']} forks; "
+                    f"{len(r.get('implementation_sources', []))} located source snippets")
+          print('Discovery API errors:', len(p['discovery']['errors']))
+          print('Missing social metrics are not zero.')
+          PY
+      - name: Preserve reproducible live research output
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: github-voice-popularity-results
+          path: |
+            /tmp/github-voice-live.json
+            /tmp/github-voice-live.md
+          retention-days: 7
