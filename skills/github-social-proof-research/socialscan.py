@@ -164,6 +164,13 @@ def filter_required_features(api, rows, required, record, max_readme_checks=100)
     matched, skipped = [], 0
     readme_count, readme_errors = 0, 0
     for row in rows:
+        # A caller-supplied project is an explicit research lead. Never silently
+        # discard it because its README does not contain our synonym list;
+        # the optional source-code gate will still check actual implementation.
+        if "direct-seed" in row.get("discovery_routes", []):
+            row["feature_match_source"] = "explicit_seed_pending_source_check"
+            matched.append(row)
+            continue
         text = row["repo"] + "\n" + row["description"]
         if all(rx.search(text) for rx in terms):
             row["feature_match_source"] = "name_or_description"
