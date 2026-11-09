@@ -30,7 +30,7 @@ jobs:
 
   live-popularity-smoke:
     # Only on explicit code changes/manual dispatch; no scheduled quotas or background service.
-    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     timeout-minutes: 7
     permissions:
