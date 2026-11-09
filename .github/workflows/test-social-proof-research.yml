@@ -1,0 +1,29 @@
+name: Test social-proof GitHub research skill
+
+on:
+  push:
+    paths:
+      - 'skills/github-social-proof-research/**'
+      - '.github/workflows/test-social-proof-research.yml'
+  pull_request:
+    paths:
+      - 'skills/github-social-proof-research/**'
+      - '.github/workflows/test-social-proof-research.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Python stdlib unit tests, without external services
+        run: |
+          cd skills/github-social-proof-research
+          python3 -m unittest discover -s tests -v
+          python3 -m py_compile socialscan.py
